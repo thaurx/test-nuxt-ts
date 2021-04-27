@@ -1,6 +1,6 @@
 <template>
   <v-row justify="center" align="center">
-    <v-col cols="12" sm="8" md="6">
+    <v-col cols="10" sm="6" md="4">
       <div class="text-center">
         <logo />
         <vuetify-logo />
@@ -77,6 +77,11 @@
         </v-card-actions>
       </v-card>
     </v-col>
+    <v-col cols="2" sm="1" md="1">
+      {{ authenticated }}
+      <v-btn @click="setLogin">setLogin</v-btn>
+      <v-btn @click="setLogout">setLogout</v-btn>
+    </v-col>
   </v-row>
 </template>
 
@@ -88,6 +93,19 @@ export default {
   components: {
     Logo,
     VuetifyLogo,
+  },
+  computed: {
+    authenticated() {
+      return this.$store.state.authenticated
+    },
+  },
+  methods: {
+    setLogin() {
+      this.$store.commit('login')
+    },
+    setLogout() {
+      this.$store.commit('logout')
+    },
   },
 }
 </script>
